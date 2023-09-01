@@ -1,39 +1,82 @@
---- 
+---
+import { ViewTransitions } from "astro:transitions";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import Navbar from "./Navbar.astro";
+
 interface Props {
-	title: string;
+  title?: string;
 }
 
-const { title } = Astro.props;
+const { title = "The First Moment of LE SSERAFIM" } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <ViewTransitions />
+  </head>
+  <body>
+    <Navbar />
+    <slot />
+  </body><style is:global>
+    :root {
+      --scrollbar-color: #dbdbdb;
+      --scrollbar-hover-color: #acaaab;
+      --scrollbar-width: 8px;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Roboto", "Inter", sans-serif;
+      background-color: #080808;
+      color: white;
+
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-color);
+      scrollbar-highlight-color: var(--scrollbar-hover-color);
+      scrollbar-gutter: auto;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+    }
+
+    .text-outline {
+      color: transparent;
+      -webkit-text-stroke: 2px white;
+    }
+
+    ::-webkit-scrollbar {
+      width: var(--scrollbar-width);
+      height: var(--scrollbar-width);
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-color);
+      border-radius: 100px;
+      transition: color 300ms ease-in-out;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-hover-color);
+    }
+  </style>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151A;
-		background-size: 224px;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>

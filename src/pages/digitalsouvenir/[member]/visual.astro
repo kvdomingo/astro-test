@@ -1,0 +1,57 @@
+---
+import { members, memberIndex } from "@/lib/constants";
+import Layout from "@/layouts/Layout.astro";
+import MiniGallery from "@/components/MiniGallery.astro";
+
+export function getStaticPaths() {
+  return members.map(member => ({
+    params: { member },
+  }));
+}
+
+const { member } = Astro.params;
+
+const visual = Array(10)
+  .fill("")
+  .map((_, i) => `Photocard_Visual_${memberIndex[member]}_${i + 1}.png`);
+
+const moving = Array(10)
+  .fill("")
+  .map((_, i) => `Photocard_Visual_Moving_${memberIndex[member]}_${i + 1}`);
+---
+
+<Layout>
+  <div class="container mx-auto my-8 h-screen min-h-screen">
+    <div class="grid grid-cols-1 md:grid-cols-12">
+      <div class="col-span-4"></div>
+      <div class="col-span-8 -mx-14 -mb-12">
+        <h1 class="my-0">The First Moment of</h1>
+        <h2 class="text-outline relative z-10 my-0 text-[100pt] capitalize">
+          {member}
+        </h2>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-12">
+      <div class="col-span-4">
+        <!--<Preview />-->
+      </div>
+      <div class="col-span-8 content-start px-8 pt-12">
+        <p class="mb-4 text-sm font-bold uppercase">
+          Step 02. Choose the visual card you like best
+        </p>
+        <MiniGallery
+          header="Visual - Still Images"
+          media={visual}
+          type="image"
+        />
+        <MiniGallery
+          header="Visual - Moving Images"
+          media={moving}
+          type="video"
+        />
+
+        <!--<ActionButtons />-->
+      </div>
+    </div>
+  </div>
+</Layout>
