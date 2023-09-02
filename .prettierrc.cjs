@@ -5,7 +5,7 @@ module.exports = {
   endOfLine: "lf",
   importOrder: [
     "^astro(.*)",
-    "^@astrojs/(.*)",
+    "^svelte(.*)",
     "<THIRD_PARTY_MODULES>",
     "^@/(.*)",
     "^[./]",
@@ -20,6 +20,7 @@ module.exports = {
   trailingComma: "all",
   plugins: [
     "prettier-plugin-astro",
+    "prettier-plugin-svelte",
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss",
   ],
@@ -28,6 +29,12 @@ module.exports = {
       files: "*.astro",
       options: {
         parser: "astro",
+      },
+    },
+    {
+      files: "*.svelte",
+      options: {
+        parser: "svelte",
       },
     },
   ],

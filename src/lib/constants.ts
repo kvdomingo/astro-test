@@ -27,3 +27,6 @@ export const audioText = [
   "message_jp",
   "message_en",
 ];
+
+export const GS_URL =
+  "https://lsfm-digisouvenir-assets.storage.googleapis.com/assets";

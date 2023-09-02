@@ -17,8 +17,11 @@ export const cld = new Cloudinary({
   },
 });
 
-export const buildUrl = (path: string = "") => {
+export const buildUrl = (path: string | null = "") => {
   const _path = `lsfm/assets/${path}`;
+
+  if (!path) return "";
+
   if (path.includes("Moving")) {
     return cld
       .video(_path)

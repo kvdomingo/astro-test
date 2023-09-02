@@ -1,0 +1,34 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Preview from "@/components/Preview.svelte";
+import ActionButtons from "@/components/ActionButtons.svelte";
+import Header from "@/components/Header.astro";
+import TextGallery from "@/components/TextGallery.svelte";
+import AudioGallery from "@/components/AudioGallery.svelte";
+
+const { member } = Astro.params;
+---
+
+<Layout>
+  <div class="container mx-auto my-8 h-screen min-h-screen">
+    <Header />
+    <div class="grid grid-cols-1 md:grid-cols-12">
+      <div class="col-span-4" transition:name="preview">
+        <Preview member={member} client:load />
+      </div>
+      <div class="col-span-8 content-start px-8 pt-12">
+        <p class="text-sm font-bold uppercase">
+          Step 03. Choose one text card and one auditory card to complete
+        </p>
+        <TextGallery member={member} client:load />
+        <AudioGallery client:load />
+
+        <ActionButtons
+          transition:name="actions"
+          client:load
+          page="text-audio"
+        />
+      </div>
+    </div>
+  </div>
+</Layout>

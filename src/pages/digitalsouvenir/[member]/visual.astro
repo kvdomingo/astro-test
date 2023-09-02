@@ -1,13 +1,10 @@
 ---
-import { members, memberIndex } from "@/lib/constants";
+import { memberIndex } from "@/lib/constants";
 import Layout from "@/layouts/Layout.astro";
 import MiniGallery from "@/components/MiniGallery.astro";
-
-export function getStaticPaths() {
-  return members.map(member => ({
-    params: { member },
-  }));
-}
+import Preview from "@/components/Preview.svelte";
+import ActionButtons from "@/components/ActionButtons.svelte";
+import Header from "@/components/Header.astro";
 
 const { member } = Astro.params;
 
@@ -22,18 +19,10 @@ const moving = Array(10)
 
 <Layout>
   <div class="container mx-auto my-8 h-screen min-h-screen">
+    <Header />
     <div class="grid grid-cols-1 md:grid-cols-12">
-      <div class="col-span-4"></div>
-      <div class="col-span-8 -mx-14 -mb-12">
-        <h1 class="my-0">The First Moment of</h1>
-        <h2 class="text-outline relative z-10 my-0 text-[100pt] capitalize">
-          {member}
-        </h2>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-12">
-      <div class="col-span-4">
-        <!--<Preview />-->
+      <div class="col-span-4" transition:name="preview">
+        <Preview client:load />
       </div>
       <div class="col-span-8 content-start px-8 pt-12">
         <p class="mb-4 text-sm font-bold uppercase">
@@ -50,7 +39,7 @@ const moving = Array(10)
           type="video"
         />
 
-        <!--<ActionButtons />-->
+        <ActionButtons client:load page="visual" />
       </div>
     </div>
   </div>

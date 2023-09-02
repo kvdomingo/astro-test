@@ -1,8 +1,7 @@
 ---
 import { type MediaType } from "@/types/member";
-import Image from "./Image.astro";
-import Video from "./Video.astro";
-import { selectedVisual } from "../lib/store";
+import Image from "./Image.svelte";
+import Video from "./Video.svelte";
 
 interface Props {
   header: string;
@@ -12,27 +11,20 @@ interface Props {
 
 const { media, header, type } = Astro.props;
 const { member } = Astro.params;
-
-const MediaComponent = type === "video" ? Video : Image;
 ---
-
-<script>
-  import { selectedVisual } from "@/lib/store";
-
-  selectedVisual.subscribe(sel => console.log(sel));
-</script>
 
 <div class="mb-8">
   <h3 class="my-2 text-2xl">{header}</h3>
   <hr class="text-white" />
   <div class="flex cursor-grab gap-2 overflow-x-scroll whitespace-nowrap py-4">
     {
-      media.map(medium => (
-        <MediaComponent
-          src={`${member}/${medium}`}
-          onclick={() => selectedVisual.set(medium)}
-        />
-      ))
+      media.map(medium =>
+        type === "video" ? (
+          <Video client:load src={`${member}/${medium}`} />
+        ) : (
+          <Image client:load src={`${member}/${medium}`} />
+        ),
+      )
     }
   </div>
 </div>

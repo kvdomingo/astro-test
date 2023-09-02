@@ -1,0 +1,13 @@
+---
+const { member } = Astro.params;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-12" transition:name="header">
+  <div class="col-span-4"></div>
+  <div class="col-span-8 -mx-14 -mb-12">
+    <h1 class="my-0">The First Moment of</h1>
+    <h2 class="text-outline relative z-10 my-0 text-[100pt] capitalize">
+      {member}
+    </h2>
+  </div>
+</div>

@@ -19,64 +19,80 @@ const { title = "The First Moment of LE SSERAFIM" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logo_light.svg" />
+    <meta name="description" content="The First Moment of LE SSERAFIM" />
+    <link rel="apple-touch-icon" href="/logo_light.svg" />
+
     <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content="The First Moment of LE SSERAFIM" />
+    <meta property="og:image" content="/logo_light.svg" />
+    <meta property="og:url" content="https://lsfm.kvd.studio" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+
+    <link rel="canonical" href="https://lsfm.kvd.studio" />
+
     <title>{title}</title>
 
     <ViewTransitions />
   </head>
   <body>
     <Navbar />
-    <slot />
-  </body><style is:global>
-    :root {
-      --scrollbar-color: #dbdbdb;
-      --scrollbar-hover-color: #acaaab;
-      --scrollbar-width: 8px;
-    }
+    <main transition:animate="slide">
+      <slot />
+    </main>
 
-    body {
-      margin: 0;
-      font-family: "Roboto", "Inter", sans-serif;
-      background-color: #080808;
-      color: white;
+    <style is:global>
+      :root {
+        --scrollbar-color: #dbdbdb55;
+        --scrollbar-hover-color: #acaaab;
+        --scrollbar-width: 5px;
+        --scrollbar-padding: 1rem;
+      }
 
-      scrollbar-width: thin;
-      scrollbar-color: var(--scrollbar-color);
-      scrollbar-highlight-color: var(--scrollbar-hover-color);
-      scrollbar-gutter: auto;
+      html {
+        margin: 0;
+        font-family: "Roboto", "Inter", sans-serif;
+        background-color: #080808;
+        color: white;
 
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-color);
+        scrollbar-highlight-color: var(--scrollbar-hover-color);
+        scrollbar-gutter: auto;
 
-    code {
-      font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
-    }
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
 
-    .text-outline {
-      color: transparent;
-      -webkit-text-stroke: 2px white;
-    }
+      code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+          monospace;
+      }
 
-    ::-webkit-scrollbar {
-      width: var(--scrollbar-width);
-      height: var(--scrollbar-width);
-    }
+      .text-outline {
+        color: transparent;
+        -webkit-text-stroke: 2px white;
+      }
 
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
+      ::-webkit-scrollbar {
+        width: var(--scrollbar-width);
+        height: var(--scrollbar-width);
+      }
 
-    ::-webkit-scrollbar-thumb {
-      background: var(--scrollbar-color);
-      border-radius: 100px;
-      transition: color 300ms ease-in-out;
-    }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--scrollbar-hover-color);
-    }
-  </style>
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-color);
+        border-radius: 100px;
+        transition: color 300ms ease-in-out;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-hover-color);
+      }
+    </style>
+  </body>
 </html>
